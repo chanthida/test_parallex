@@ -12,8 +12,12 @@
 */
 
 Route::get('/', 'WelcomeController@index');
+//Route::get('/', 'WelcomeController@index')->middleware(\App\Http\Middleware\Alert::class);
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'AdminController@index')->name('home');
 
+Route::get('{slug}', [
+    'uses' => 'AdminController@getPage'
+])->where('slug', '([A-Za-z0-9\-\/]+)');

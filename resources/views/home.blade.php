@@ -1,21 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.app_backend')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                </div>
-            </div>
+    <section class="content">
+        <div class="container-fluid">
+            this is home
         </div>
-    </div>
-</div>
+    </section>
 @endsection

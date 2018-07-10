@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MenuContents;
 use App\Models\Menus;
 use App\Models\Profile;
 use Illuminate\Http\Request;
@@ -15,13 +16,14 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-//        $menus =  Menus::where('active', 1)
-//            ->where('show_on_menu', 1)
-//            ->get();
-//
-//        $profile = Profile::first();
+        $menus =  Menus::orderBy('sort_order')
+            ->get();
 
-        return view('welcome'/*, ['menus' => $menus , 'profile' => $profile]*/);
+        $profile = Profile::first();
+
+        $sections = MenuContents::get();
+
+        return view('welcome', ['menus' => $menus , 'profile' => $profile, 'sections' => $sections]);
     }
 
 }
