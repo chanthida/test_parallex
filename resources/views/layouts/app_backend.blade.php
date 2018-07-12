@@ -79,7 +79,7 @@
     </head>
 
 
-    <body>
+    <body class="theme-red">
     @include('template_admin.top_bar')
     @include('template_admin.aside')
     @yield('content')

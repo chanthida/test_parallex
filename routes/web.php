@@ -16,8 +16,10 @@ Route::get('/', 'WelcomeController@index');
 
 Auth::routes();
 
-Route::get('/home', 'AdminController@index')->name('home');
+Route::get('admin', 'AdminController@index');
 
-Route::get('{slug}', [
-    'uses' => 'AdminController@getPage'
-])->where('slug', '([A-Za-z0-9\-\/]+)');
+Route::get('admin/home','AdminController@home');
+
+Route::get('admin/home/edit/{id}','AdminController@homeEdit');
+
+Route::post('admin/home/save','AdminController@save');

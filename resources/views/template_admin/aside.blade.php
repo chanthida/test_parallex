@@ -28,20 +28,23 @@
         <div class="menu">
             <ul class="list">
                 <li class="header">MAIN NAVIGATION</li>
-                <li class="active">
-                    <a href="{{ URL::to('/home')}}">
+                <li class="{{ (request()->is('admin') ? 'active' : '' )}}">
+                    <a href="{{ URL::to('admin')}}">
                         <i class="material-icons">home</i>
                         <span>Home</span>
                     </a>
                 </li>
-                <li>
+                <li class="{{ (request()->is('admin/*') ? 'active' : '') }}">
                     <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">edit</i>
                         <span>Customization</span>
                     </a>
                     <ul class="ml-menu">
+                        <?php
+                        $menus = \App\Bank\Test::getMenu();
+                        ?>
                         @foreach($menus as $menu)
-                            <li>
+                            <li class="{{ (request()->is('admin/'.$menu->slug.'/*') || request()->is('admin/'.$menu->slug) ? 'active' : '') }}">
                                 <a href="{{URL::to('/admin/'.$menu->slug)}}">
                                     <span>{{$menu->name}}</span>
                                 </a>

@@ -1,5 +1,7 @@
 <?php
 namespace App\Bank;
+use App\Models\Menus;
+
 /**
  * Created by PhpStorm.
  * User: hemisphere_dev
@@ -9,8 +11,10 @@ namespace App\Bank;
 class Test
 {
 
-    public function test(){
-
+    public static function getMenu(){
+        $menus =  Menus::orderBy('sort_order')
+            ->get();
+        return $menus;
     }
 
 }
