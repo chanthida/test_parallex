@@ -7,9 +7,9 @@
                 <img src="{{asset('template_admin/images/user.png')}}" width="48" height="48" alt="User" />
             </div>
             <div class="info-container">
-                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
-                <div class="email">john.doe@example.com</div>
-                <div class="btn-group user-helper-dropdown">
+                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</div>
+                <div class="email">{{Auth::user()->email}}</div>
+             {{--   <div class="btn-group user-helper-dropdown">
                     <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                     <ul class="dropdown-menu pull-right">
                         <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
@@ -20,7 +20,7 @@
                         <li role="separator" class="divider"></li>
                         <li><a href="javascript:void(0);"><i class="material-icons">input</i>Sign Out</a></li>
                     </ul>
-                </div>
+                </div>--}}
             </div>
         </div>
         <!-- #User Info -->
@@ -34,18 +34,30 @@
                         <span>Home</span>
                     </a>
                 </li>
-                <li class="{{ (request()->is('admin/*') ? 'active' : '') }}">
+                <li class="{{ (request()->is('admin/profile') ? 'active' : '' )}}">
+                    <a href="{{ URL::to('admin/profile')}}">
+                        <i class="material-icons">account_box</i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li class="{{ (request()->is('admin/menu/*') ? 'active' : '' )}}">
+                    <a href="{{ URL::to('admin/menu')}}">
+                        <i class="material-icons">menu</i>
+                        <span>Menu</span>
+                    </a>
+                </li>
+                <li class="{{ (request()->is('admin/cus/*') ? 'active' : '') }}">
                     <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">edit</i>
                         <span>Customization</span>
                     </a>
                     <ul class="ml-menu">
                         <?php
-                        $menus = \App\Bank\Test::getMenu();
+                        $menus = \App\Util\Util::getMenu();
                         ?>
                         @foreach($menus as $menu)
-                            <li class="{{ (request()->is('admin/'.$menu->slug.'/*') || request()->is('admin/'.$menu->slug) ? 'active' : '') }}">
-                                <a href="{{URL::to('/admin/'.$menu->slug)}}">
+                            <li class="{{ (request()->is('admin/cus/'.$menu->slug.'/*') || request()->is('admin/cus/'.$menu->slug) ? 'active' : '') }}">
+                                <a href="{{URL::to('/admin/cus/'.$menu->slug)}}">
                                     <span>{{$menu->name}}</span>
                                 </a>
                             </li>
