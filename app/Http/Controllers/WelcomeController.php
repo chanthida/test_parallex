@@ -21,7 +21,7 @@ class WelcomeController extends Controller
 
         $profile = Profile::first();
 
-        $sections = MenuContents::get();
+        $sections = MenuContents::where('deleted_at',NULL)->get();
 
         return view('welcome', ['menus' => $menus , 'profile' => $profile, 'sections' => $sections]);
     }

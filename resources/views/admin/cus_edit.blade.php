@@ -41,7 +41,7 @@
                                             <div class="form-group">
                                                 <div class="form-line">
                                                     <h2 class="card-inside-title">Header</h2>
-                                                    <textarea rows="4" class="form-control no-resize" placeholder="Header" name="edit_header">{{$result->header}}</textarea>
+                                                    <textarea rows="2" class="form-control no-resize" placeholder="Header" name="edit_header">{{$result->header}}</textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -52,7 +52,7 @@
                                             <div class="form-group ">
                                                 <div class="form-line">
                                                     <h2 class="card-inside-title">Content</h2>
-                                                    <textarea rows="4" class="form-control no-resize" placeholder="Content" name="edit_content">{{$result->content}}</textarea>
+                                                    <textarea rows="10" class="form-control no-resize" placeholder="Content" name="edit_content">{{$result->content}}</textarea>
                                                 </div>
                                             </div>
                                         </div>

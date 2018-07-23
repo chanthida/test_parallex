@@ -40,7 +40,7 @@
                         <span>Profile</span>
                     </a>
                 </li>
-                <li class="{{ (request()->is('admin/menu/*') ? 'active' : '' )}}">
+                <li class="{{ (request()->is('admin/menu') || request()->is('admin/menu/*') ? 'active' : '' )}}">
                     <a href="{{ URL::to('admin/menu')}}">
                         <i class="material-icons">menu</i>
                         <span>Menu</span>

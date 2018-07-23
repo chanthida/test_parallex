@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MenuContents;
 use App\Models\Menus;
 use App\Models\Profile;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -59,7 +60,8 @@ class AdminController extends Controller
 
     public function cusPage($slug){
         $result =  Menus::where('slug',$slug)->first();
-        $resultContents =  MenuContents::where('menu_id',$result->id)->get();
+        $resultContents =  MenuContents::where('menu_id',$result->id)
+            ->where('deleted_at',NULL)->get();
         return view('admin.cus_page',[
             'resultContents' => $resultContents,
             'slug' => $slug
@@ -144,7 +146,8 @@ class AdminController extends Controller
 
     public function deleteMenuContent(Request $request){
         $model = MenuContents::find($request->get('id'));
-        $model->delete();
+        $model->deleted_at = Carbon::now();
+        $model->save();
 
     }
 
